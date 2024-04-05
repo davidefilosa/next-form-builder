@@ -114,7 +114,10 @@ export const publishForm = async (id: string) => {
   return revalidatePath("/builder");
 };
 
-export const updateFormContent = async (id: string, jsonContent: string) => {
+export const updateFormContent = async (
+  id: string | string[],
+  jsonContent: string
+) => {
   const { userId } = auth();
 
   if (!userId) {
