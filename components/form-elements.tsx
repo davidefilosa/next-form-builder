@@ -9,6 +9,7 @@ import { SelectFieldFormElement } from "./fields/select-field";
 import { SeparatorFieldFormElement } from "./fields/separator-field";
 import { SpacerFieldFormElement } from "./fields/space-field";
 import { SubTitleFieldFormElement } from "./fields/subtitle-field";
+import { TextAreaFormElement } from "./fields/textarea-field";
 
 export type ElementsType =
   | "TextField"
@@ -70,5 +71,5 @@ export const FormElements: FormElementsType = {
   SeparatorField: SeparatorFieldFormElement,
   SpacerField: SpacerFieldFormElement,
   SubTitleField: SubTitleFieldFormElement,
-  TextAreaField: TextFieldFormElement,
+  TextAreaField: TextAreaFormElement,
 };
