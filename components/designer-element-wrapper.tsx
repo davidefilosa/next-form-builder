@@ -43,8 +43,6 @@ export const DesignerElementWrapper = ({
     },
   });
 
-  console.log(selectedElement);
-
   if (dragabble.isDragging) return null;
   const DesignerElement = FormElements[element.type].designerComponent;
   return (
