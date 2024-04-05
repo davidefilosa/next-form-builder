@@ -55,19 +55,21 @@ const FormsIdPage = async ({
         <div className="flex justify-between container gap-4">
           <div className="flex items-center gap-2">
             <h1 className="text-4xl font-bold truncate">{form.name}</h1>
-            <VisitButton shareUrl={form.shareURL} />
           </div>
-          <Button asChild variant={"outline"} className="flex gap-2">
-            <Link href="/dashboard">
-              <LayoutDashboard className="w-6 h-6" />
-              Dashboard
-            </Link>
-          </Button>
+          <div className="flex gap-2">
+            <Button asChild variant={"outline"} className="flex gap-2">
+              <Link href="/dashboard">
+                <LayoutDashboard className="w-6 h-6" />
+                Dashboard
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
       <div className="py-4 border-b border-muted w-full">
         <div className="container flex gap-4 items-center justify-between">
           <FormLinkShare shareUrl={form.shareURL} />
+          <VisitButton shareUrl={form.shareURL} />
         </div>
       </div>
       <div className="w-full pt-8 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container">
