@@ -22,11 +22,17 @@ const Home = () => {
           Form Building Platform.
         </h2>
       </div>
-      <div>
+      <div className="flex gap-4">
+        <SignedOut>
+          <Button size={"lg"} asChild className="shadow-md" variant={"outline"}>
+            <Link href="/demo">See Demo</Link>
+          </Button>
+        </SignedOut>
+
         <Button size={"lg"} asChild className="shadow-md">
           <Link href="/dashboard">
             <SignedIn>Go To the Dashboard</SignedIn>
-            <SignedOut>Start for Free</SignedOut>
+            <SignedOut>Use for Free</SignedOut>
           </Link>
         </Button>
       </div>

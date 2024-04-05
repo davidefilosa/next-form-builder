@@ -16,14 +16,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
-import { useParams } from "next/navigation";
-import { generateForm } from "@/actions/form-actions";
+import { useParams, usePathname } from "next/navigation";
+import { generateDemoForm, generateForm } from "@/actions/form-actions";
 
 const formSchema = z.object({
   description: z.string().min(2).max(200),
 });
 
 export const AiButton = () => {
+  const pathname = usePathname();
+  const isDemo = pathname === "/demo";
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const { id } = useParams<{ id: string }>();
@@ -36,11 +38,22 @@ export const AiButton = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setLoading(true);
-      await generateForm(id, values.description).then(() => {
-        setLoading(false);
-        setOpen(false);
-      });
+      if (isDemo) {
+        setLoading(true);
+        await generateDemoForm(
+          "660fde584e2e12f6cd7164c3",
+          values.description
+        ).then(() => {
+          setLoading(false);
+          setOpen(false);
+        });
+      } else {
+        setLoading(true);
+        await generateForm(id, values.description).then(() => {
+          setLoading(false);
+          setOpen(false);
+        });
+      }
     } catch (error) {
       console.log(error);
     }

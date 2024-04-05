@@ -26,11 +26,15 @@ import { useDesigner } from "./hooks/use-designer";
 import Confetti from "react-confetti";
 import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
+import { useParams, usePathname } from "next/navigation";
+import { Badge } from "./ui/badge";
 
 type Props = {
   form: Form;
 };
 export const FormBuilder = ({ form }: Props) => {
+  const pathname = usePathname();
+  const isDemo = pathname === "/demo";
   const { setElements } = useDesigner();
   const [isReady, setIsReady] = useState(false);
   const mouseSensor = useSensor(MouseSensor, {
@@ -117,20 +121,28 @@ export const FormBuilder = ({ form }: Props) => {
       <main className="flex flex-col w-full">
         <nav className="flex justify-between border-b-2 p-4 gap-3 items-center">
           <div className="flex items-center gap-2">
-            <Button asChild variant={"outline"} className="flex gap-2">
-              <Link href="/dashboard">
-                <LayoutDashboard className="w-6 h-6" />
-                Dashboard
-              </Link>
-            </Button>
+            {!isDemo && (
+              <Button asChild variant={"outline"} className="flex gap-2">
+                <Link href="/dashboard">
+                  <LayoutDashboard className="w-6 h-6" />
+                  Dashboard
+                </Link>
+              </Button>
+            )}
+
             <h2 className="truncate font-medium">
               <span className="text-muted-foreground mr-2">Form:</span>
               {form.name}
             </h2>
           </div>
           <div className="flex items-center gap-2">
+            {isDemo && (
+              <Badge className="py-2">
+                This is a demo, you can not save or share the form
+              </Badge>
+            )}
             <PreviewDialogButton />
-            {!form.published && (
+            {!form.published && !isDemo && (
               <>
                 <SaveFormButton id={form.id} />
                 <PublishFormButton id={form.id} />
