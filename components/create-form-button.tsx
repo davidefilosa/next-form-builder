@@ -55,7 +55,7 @@ export const CreateFormButton = () => {
       <DialogTrigger asChild>
         <Button
           variant={"outline"}
-          className="group h-[200px] flex flex-col gap-4 items-center justify-center hover:shadow-purple-600 shadow-sm shadow-primary"
+          className="group h-[210px] flex flex-col gap-4 items-center justify-center hover:shadow-purple-600 shadow-sm shadow-primary"
         >
           <Plus className="w-8 h-8 text-muted-foreground group-hover:text-primary" />
           <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">

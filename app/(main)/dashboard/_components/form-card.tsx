@@ -14,6 +14,7 @@ import React from "react";
 import { formatDistance } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
+import { DeleteFormButton } from "@/components/delete-form-button";
 
 type Props = {
   form: Form;
@@ -26,7 +27,7 @@ export const FormCard = ({ form }: Props) => {
         <CardTitle className="flex items-center gap-2 justify-between">
           <span className="truncate font-bold">{form.name}</span>
           {form.published && <Badge>Published</Badge>}
-          {!form.published && <Badge variant={"destructive"}>Draft</Badge>}
+          {!form.published && <Badge variant={"secondary"}>Draft</Badge>}
         </CardTitle>
         <CardDescription className="flex items-center justify-between text-muted-foreground text-sm">
           {formatDistance(form.createdAt, new Date(), {
@@ -45,11 +46,12 @@ export const FormCard = ({ form }: Props) => {
       <CardContent className="h-[20px] truncate text-sm text-muted-foreground">
         {form.description || "No description"}
       </CardContent>
-      <CardFooter className="flex justify-end">
+      <CardFooter className="flex justify-between items-center mt-4">
+        <DeleteFormButton id={form.id} />
         {form.published && (
-          <Button asChild className="mt-4 text-sm gap-4" size={"sm"}>
+          <Button asChild className="text-sm gap-4" size={"sm"}>
             <Link href={`/forms/${form.id}`}>
-              View submissions <ArrowRight className="w-3 h-3" />
+              View submissions <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
         )}
@@ -57,11 +59,11 @@ export const FormCard = ({ form }: Props) => {
           <Button
             asChild
             variant={"default"}
-            className=" mt-4 text-sm gap-4"
+            className="text-sm gap-4"
             size={"sm"}
           >
             <Link href={`/builder/${form.id}`}>
-              Edit form <Pencil className="w-3 h-3" />
+              Edit form <Pencil className="w-4 h-4" />
             </Link>
           </Button>
         )}

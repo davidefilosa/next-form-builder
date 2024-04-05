@@ -234,3 +234,20 @@ export async function generateForm(id: string, description: string) {
     };
   }
 }
+
+export async function deleteForm(id: string) {
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  await prismadb.form.delete({
+    where: {
+      id,
+      userId,
+    },
+  });
+
+  return revalidatePath("/dashboard");
+}

@@ -35,7 +35,7 @@ model FormSubmissions {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   formId    String @db.ObjectId
-  form      Form     @relation(fields: [formId], references: [id])
+  form      Form     @relation(fields: [formId], references: [id],  onDelete: Cascade)
 
   content String
 }
