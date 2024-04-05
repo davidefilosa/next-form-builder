@@ -12,8 +12,7 @@ const Home = () => {
       </div>
       <div>
         <h1 className="text-5xl text-primary font-semibold">
-          Effortlessly Create and Share Craft Tailored Forms with Artificial
-          Intelligence.
+          Effortlessly Craft Tailored Forms and Share Instantly.
         </h1>
       </div>
       <div>

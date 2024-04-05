@@ -199,7 +199,7 @@ export async function generateForm(id: string, description: string) {
   }
 
   const promptExplanation =
-    "Based on the description, generate a survey object with 4-6 fields:  id a random number between 1000 and 9999(string) for the form, type: chosen from SelectField, DateField, TextField, NumberField, TextAreaField, CheckboxField, extraAttributes an object with label(string), helperText(string, required(boolean), placeholder:(string), options(array of string). if you choose a checkboxField the question need to be answered only with true or folse and can never been required. return the response as an array of object, return only the array no other comments. Do not leave any space or use any special character. Important You answer need to be parsed as json object";
+    "Based on the description, generate a survey object with 4-6 fields:  id a random number between 1000 and 9999(string) for the form, type: chosen from SelectField, DateField, TextField, NumberField, TextAreaField, CheckboxField, extraAttributes an object with label(string), helperText(string, required(boolean), placeholder:(string), options(array of string). if you choose a checkboxField the question need to be answered only with true or false and can never been required. return the response as an array of object, return only the array no other comments. Do not leave any space or use any special character. Important You answer need to be parsed as json object";
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
