@@ -51,7 +51,7 @@ export const NumberFieldFormElement: FormElement = {
   }),
   designerBtnElement: { icon: Hash, label: "Number Field" },
   designerComponent: DesignerComponet,
-  formComponent: formComponent,
+  formComponent: FormComponent,
   propertiesComponent: PropertiesComponent,
 
   validate: (
@@ -215,7 +215,7 @@ function DesignerComponet({
   );
 }
 
-function formComponent({
+function FormComponent({
   elementInstance,
   submitValue,
   isInvalid,

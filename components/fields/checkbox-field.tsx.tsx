@@ -50,7 +50,7 @@ export const CheckboxFieldFieldFormElement: FormElement = {
   }),
   designerBtnElement: { icon: SquareCheck, label: "Checkbox Field" },
   designerComponent: DesignerComponet,
-  formComponent: formComponent,
+  formComponent: FormComponent,
   propertiesComponent: PropertiesComponent,
 
   validate: (
@@ -199,7 +199,7 @@ function DesignerComponet({
   );
 }
 
-function formComponent({
+function FormComponent({
   elementInstance,
   submitValue,
   isInvalid,
