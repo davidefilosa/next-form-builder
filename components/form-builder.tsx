@@ -21,6 +21,7 @@ import {
   ArrowBigRight,
   LayoutDashboard,
   Loader,
+  RotateCcw,
 } from "lucide-react";
 import { useDesigner } from "./hooks/use-designer";
 import Confetti from "react-confetti";
@@ -28,6 +29,7 @@ import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
 import { useParams, usePathname } from "next/navigation";
 import { Badge } from "./ui/badge";
+import { resetDemoForm } from "@/actions/form-actions";
 
 type Props = {
   form: Form;
@@ -52,6 +54,9 @@ export const FormBuilder = ({ form }: Props) => {
     const elements = JSON.parse(form.content);
     setElements(elements);
     setIsReady(true);
+    if (isDemo) {
+      resetDemoForm("660fde584e2e12f6cd7164c3");
+    }
   }, [form, setElements]);
 
   if (!isReady)
@@ -141,6 +146,7 @@ export const FormBuilder = ({ form }: Props) => {
                 This is a demo, you can not save or share the form
               </Badge>
             )}
+
             <PreviewDialogButton />
             {!form.published && !isDemo && (
               <>
