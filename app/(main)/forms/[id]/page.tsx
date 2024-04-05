@@ -142,14 +142,25 @@ async function SubmissionsTable({ id }: { id: string }) {
     type: ElementsType;
   }[] = [];
 
-  formElements.forEach((el) =>
-    columns.push({
-      id: el.id,
-      label: el.extraAttributes?.label,
-      required: el.extraAttributes?.required,
-      type: el.type,
-    })
-  );
+  formElements.forEach((el) => {
+    switch (el.type) {
+      case "TextField":
+      case "NumberField":
+      case "TextAreaField":
+      case "DateField":
+      case "SelectField":
+      case "CheckboxField":
+        columns.push({
+          id: el.id,
+          label: el.extraAttributes?.label,
+          required: el.extraAttributes?.required,
+          type: el.type,
+        });
+        break;
+      default:
+        break;
+    }
+  });
 
   const rows: Row[] = [];
   form.FormSubmissions.forEach((submission) => {
