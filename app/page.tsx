@@ -8,17 +8,18 @@ const Home = () => {
     <main className="flex flex-col w-full  h-full items-center justify-start gap-8 pt-40 bg-[url(/paper.svg)] dark:bg-[url(/paper-dark.svg)]">
       <div className="h-full w-full fixed top-1/2 bg-gradient-to-r transition from-purple-500  to-sky-500 -z-10 blur-3xl	opacity-50 dark:opacity-20" />
       <div className="font-bold text-9xl bg-gradient-to-r  from-purple-500  to-sky-500 text-transparent bg-clip-text">
-        FormBuilder
+        AiFormBuilder
       </div>
       <div>
         <h1 className="text-5xl text-primary font-semibold">
-          Effortlessly Create and Share Custom Forms.
+          Effortlessly Create and Share Craft Tailored Forms with Artificial
+          Intelligence.
         </h1>
       </div>
       <div>
         <h2 className="text-xl font-semibold drak:text-white">
-          Create, Share, and Collect Responses with Our Intuitive Form Building
-          Platform.
+          Generate, Share, and Collect Responses Seamlessly with Our AI-Powered
+          Form Building Platform.
         </h2>
       </div>
       <div>

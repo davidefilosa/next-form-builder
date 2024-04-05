@@ -4,6 +4,7 @@ import { prismadb } from "@/lib/prismdb";
 import { formSchema, formSchemaType } from "@/schemas/form";
 import { auth } from "@clerk/nextjs";
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 export const getFormStats = async () => {
   const { userId } = auth();
@@ -182,4 +183,54 @@ export async function submitForm(formUrl: string, content: string) {
       published: true,
     },
   });
+}
+
+export async function generateForm(id: string | string[], description: string) {
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  if (!process.env.OPENAI_API_KEY) {
+    return {
+      message: "No OpenAI API key found",
+    };
+  }
+
+  const promptExplanation =
+    "Based on the description, generate a survey object with 3 fields:  id a random number between 1000 and 9999(string) for the form, type: chosen from TextField, NumberField, TextAreaField, CheckboxField, extraAttributes an object with label(string), helperText(string, required(boolean), placeholder:(string), return the response as an array of object, return only the array no other comments. Do not leave any space or use any special character. You answer need to be parsed as json object";
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY ?? ""}`,
+      },
+      method: "POST",
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: `${description} ${promptExplanation}`,
+          },
+        ],
+      }),
+    });
+    const json = await response.json();
+
+    const responseObj = json.choices[0].message.content;
+
+    updateFormContent(id, responseObj);
+    revalidatePath(`/builder/${id}`);
+    return {
+      message: "success",
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      message: "Failed to create form",
+    };
+  }
 }

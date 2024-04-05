@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useDesigner } from "./hooks/use-designer";
 import { idGenerator } from "@/lib/idGenerator";
 import { DesignerElementWrapper } from "./designer-element-wrapper";
+import { AiButton } from "./ai-button";
 
 export const Designer = () => {
   const {
@@ -127,9 +128,13 @@ export const Designer = () => {
           )}
         >
           {!droppable.isOver && elements.length === 0 && (
-            <p className="text-3xl text-muted-foreground flex flex-grow items-center font-bold">
-              Drop here
-            </p>
+            <div className="flex flex-col gap-4 justify-center items-center absolute top-1/2">
+              <p className="text-sm text-muted-foreground flex flex-grow items-center font-bold">
+                Drop an element to create the form manually
+              </p>
+              <span className="text-sm text-muted-foreground">or</span>
+              <AiButton />
+            </div>
           )}
           {droppable.isOver && elements.length === 0 && (
             <div className="p-4 w-full">
