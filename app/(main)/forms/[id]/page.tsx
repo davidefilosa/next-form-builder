@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/table";
 import { formatDistance } from "date-fns";
 import { Badge } from "@/components/ui/badge";
+import { CSVLink } from "react-csv";
+import { CsvButton } from "@/components/csv-buttton";
 
 const FormsIdPage = async ({
   params,
@@ -171,9 +173,15 @@ async function SubmissionsTable({ id }: { id: string }) {
     });
   });
 
+  const arr = rows.map((row) => columns.map((col) => row[col.id]));
+  const csvData = [columns.map((col) => col.label), ...arr];
+
   return (
     <>
-      <h1 className="text-2xl font-bold my-4">Submissions</h1>
+      <div className="w-full flex items-center justify-between">
+        <h1 className="text-2xl font-bold my-4">Submissions</h1>
+        <CsvButton data={csvData} />
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
