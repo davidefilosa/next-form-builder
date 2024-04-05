@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import DesignerContextProvider from "@/components/context/designer-context";
 import { Logo } from "@/components/logo";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Analytics } from "@vercel/analytics/react";
 
 const font = DM_Sans({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
                 </div>
               </nav>
               {children}
+              <Analytics />
               <Toaster />
             </ThemeProvider>
           </DesignerContextProvider>
