@@ -26,8 +26,7 @@ const formSchema = z.object({
 export const AiButton = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const params = useParams();
-  console.log(params.id);
+  const { id } = useParams<{ id: string }>();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +37,7 @@ export const AiButton = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      await generateForm(params.id, values.description).then(() => {
+      await generateForm(id, values.description).then(() => {
         setLoading(false);
         setOpen(false);
       });

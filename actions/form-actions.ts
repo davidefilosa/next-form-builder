@@ -114,10 +114,7 @@ export const publishForm = async (id: string) => {
   return revalidatePath("/builder");
 };
 
-export const updateFormContent = async (
-  id: string | string[],
-  jsonContent: string
-) => {
+export const updateFormContent = async (id: string, jsonContent: string) => {
   const { userId } = auth();
 
   if (!userId) {
@@ -188,7 +185,7 @@ export async function submitForm(formUrl: string, content: string) {
   });
 }
 
-export async function generateForm(id: string | string[], description: string) {
+export async function generateForm(id: string, description: string) {
   const { userId } = auth();
 
   if (!userId) {
