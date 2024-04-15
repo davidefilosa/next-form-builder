@@ -129,11 +129,11 @@ export const Designer = () => {
         >
           {!droppable.isOver && elements.length === 0 && (
             <div className="flex flex-col gap-4 justify-center items-center absolute top-1/2">
+              <AiButton />
+              <span className="text-sm text-muted-foreground">or</span>
               <p className="text-sm text-muted-foreground flex flex-grow items-center font-bold">
                 Drop an element to create the form manually
               </p>
-              <span className="text-sm text-muted-foreground">or</span>
-              <AiButton />
             </div>
           )}
           {droppable.isOver && elements.length === 0 && (
