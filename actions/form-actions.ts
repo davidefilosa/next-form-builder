@@ -304,7 +304,7 @@ export async function generateDemoForm(id: string, description: string) {
   } catch (e) {
     console.log(e);
     return {
-      message: "Failed to create form",
+      message: "Failed to create the form",
     };
   }
 }
