@@ -55,7 +55,7 @@ export const FormBuilder = ({ form }: Props) => {
     setElements(elements);
     setIsReady(true);
     if (isDemo) {
-      resetDemoForm("660fde584e2e12f6cd7164c3");
+      resetDemoForm("661cd9afb3c419ddd45bc4bc");
     }
   }, [form, setElements]);
 
