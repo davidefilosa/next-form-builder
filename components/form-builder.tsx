@@ -22,6 +22,7 @@ import {
   LayoutDashboard,
   Loader,
   RotateCcw,
+  User,
 } from "lucide-react";
 import { useDesigner } from "./hooks/use-designer";
 import Confetti from "react-confetti";
@@ -30,6 +31,7 @@ import { toast } from "./ui/use-toast";
 import { useParams, usePathname } from "next/navigation";
 import { Badge } from "./ui/badge";
 import { resetDemoForm } from "@/actions/form-actions";
+import { SignedOut } from "@clerk/nextjs";
 
 type Props = {
   form: Form;
@@ -143,8 +145,19 @@ export const FormBuilder = ({ form }: Props) => {
           <div className="flex items-center gap-2">
             {isDemo && (
               <Badge className="py-2">
-                This is a demo, you can not save or share the form
+                This is a demo, you can not save or share the form.
               </Badge>
+            )}
+
+            {isDemo && (
+              <SignedOut>
+                <Link href="/dashboard">
+                  <Button variant={"outline"} className="gap-2">
+                    <User className="h-6 w-6" />
+                    LogIn
+                  </Button>
+                </Link>
+              </SignedOut>
             )}
 
             <PreviewDialogButton />

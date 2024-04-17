@@ -8,6 +8,7 @@ import DesignerContextProvider from "@/components/context/designer-context";
 import { Logo } from "@/components/logo";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Analytics } from "@vercel/analytics/react";
+import { cn } from "@/lib/utils";
 
 const font = DM_Sans({ subsets: ["latin"] });
 
@@ -25,7 +26,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={font.className}>
+        <body className={cn(font.className, "scrollbar-none")}>
           <DesignerContextProvider>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
               <nav className="flex w-full items-center justify-between p-4 border-b">
