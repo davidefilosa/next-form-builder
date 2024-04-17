@@ -148,6 +148,7 @@ export const FormBuilder = ({ form }: Props) => {
                 This is a demo, you can not save or share the form.
               </Badge>
             )}
+            <PreviewDialogButton />
 
             {isDemo && (
               <SignedOut>
@@ -160,7 +161,6 @@ export const FormBuilder = ({ form }: Props) => {
               </SignedOut>
             )}
 
-            <PreviewDialogButton />
             {!form.published && !isDemo && (
               <>
                 <SaveFormButton id={form.id} />
