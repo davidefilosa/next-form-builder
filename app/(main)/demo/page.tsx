@@ -6,9 +6,8 @@ import {
 import { FormBuilder } from "@/components/form-builder";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import React, { useEffect } from "react";
 
-const BuilderIdPage = async ({ params }: { params: { id: string } }) => {
+const BuilderDemoPage = async () => {
   const { userId } = auth();
 
   const form = await getDemoForm("661cd9afb3c419ddd45bc4bc");
@@ -20,4 +19,4 @@ const BuilderIdPage = async ({ params }: { params: { id: string } }) => {
   return <FormBuilder form={form} />;
 };
 
-export default BuilderIdPage;
+export default BuilderDemoPage;
